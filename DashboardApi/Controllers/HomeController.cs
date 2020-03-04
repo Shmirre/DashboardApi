@@ -11,7 +11,7 @@ namespace DashboardApi.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-
+            ViewBag.Test = "TestForCommit";
             return View();
         }
     }
