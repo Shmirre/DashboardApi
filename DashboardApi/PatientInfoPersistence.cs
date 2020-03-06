@@ -1,7 +1,7 @@
-﻿using DashboardApi.Models;
-using System;
+﻿using System;
 using System.Collections;
 using System.Configuration;
+using DashboardApi.Models;
 
 namespace DashboardApi
 {
