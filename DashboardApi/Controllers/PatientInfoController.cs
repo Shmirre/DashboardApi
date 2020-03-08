@@ -1,11 +1,11 @@
-﻿using DashboardApi.Models;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DashboardApi.Models;
 
 namespace DashboardApi.Controllers
 {
@@ -34,6 +34,7 @@ namespace DashboardApi.Controllers
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
             PatientInfo patientinfo = pip.GetPatient(id);
+
             if (patientinfo == null)
             {
                 var message = string.Format("Patient with id = {0} not found", id);

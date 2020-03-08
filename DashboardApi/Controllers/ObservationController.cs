@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DashboardApi.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,36 @@ namespace DashboardApi.Controllers
             return obp.GetObservations();
         }
 
-        // GET: api/Observation/5
-        public string Get(int id)
+        // GET: api/Observation/id
+        public HttpResponseMessage Get(long id)
         {
-            return "value";
+            ObservationPersistence obp = new ObservationPersistence();
+            Observations observation = obp.GetObservation(id);
+
+            if (observation == null)
+            {
+                var message = string.Format("Observation with id = {0} not found", id);
+                HttpError err = new HttpError(message);
+                return Request.CreateResponse(HttpStatusCode.NotFound, err);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, observation);
+            }
         }
 
         // POST: api/Observation
-        public void Post([FromBody]string value)
+        /* HttpResponseMessage Post([FromBody]Observations value)
         {
-        }
+            ObservationPersistence obp = new ObservationPersistence();
+            long id;
+            id = obp.savePatientInfo(value);
+            value.PatientId = id;
+
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
+            response.Headers.Location = new Uri(Request.RequestUri, String.Format("patientinfo/{0}", id));
+            return response;
+        }*/
 
         // PUT: api/Observation/5
         public void Put(int id, [FromBody]string value)
