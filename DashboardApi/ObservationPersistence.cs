@@ -36,26 +36,23 @@ namespace DashboardApi
                 {
                     Observations o = new Observations
                     {
-                        Id = mySQLReader.GetInt32(0),
-                        Afdeling = mySQLReader.GetString(1),
-                        PatientId = mySQLReader.GetInt32(2),
-                        Observationdate = mySQLReader.GetDateTime(3),
-                        Ewsprocedure = mySQLReader.GetString(4),
-                        Ews_total = mySQLReader.GetInt32(5),
-                        Sbp = mySQLReader.GetFloat(6),
-                        Sbp_score = mySQLReader.GetInt32(7),
-                        Loc = mySQLReader.GetString(8),
-                        Loc_score = mySQLReader.GetInt32(9),
-                        Spo2 = mySQLReader.GetFloat(10),
-                        Spo2_score = mySQLReader.GetInt32(11),
-                        Add_o2 = mySQLReader.GetString(12),
-                        Add_o2_score = mySQLReader.GetInt32(13),
-                        Hr = mySQLReader.GetInt32(14),
-                        Hr_score = mySQLReader.GetInt32(15),
-                        Rr = mySQLReader.GetInt32(16),
-                        Rr_score = mySQLReader.GetInt32(17),
-                        Temp = mySQLReader.GetFloat(18),
-                        Temp_score = mySQLReader.GetInt32(19),
+                        PatientId = mySQLReader.GetInt32(0),
+                        Observationdate = mySQLReader.GetDateTime(1),
+                        Ews_total = mySQLReader.GetInt32(2),
+                        Sbp = mySQLReader.GetFloat(3),
+                        Sbp_score = mySQLReader.GetInt32(4),
+                        Loc = mySQLReader.GetString(5),
+                        Loc_score = mySQLReader.GetInt32(6),
+                        Spo2 = mySQLReader.GetFloat(7),
+                        Spo2_score = mySQLReader.GetInt32(8),
+                        Add_o2 = mySQLReader.GetString(9),
+                        Add_o2_score = mySQLReader.GetInt32(10),
+                        Hr = mySQLReader.GetInt32(11),
+                        Hr_score = mySQLReader.GetInt32(12),
+                        Rr = mySQLReader.GetInt32(13),
+                        Rr_score = mySQLReader.GetInt32(14),
+                        Temp = mySQLReader.GetFloat(15),
+                        Temp_score = mySQLReader.GetInt32(16),
                     };
 
                     observationArray.Add(o);
@@ -74,7 +71,7 @@ namespace DashboardApi
         }
 
         // Get A Specific Observation
-        public Observations GetObservation(long id)
+        /*public Observations GetObservation(long id)
         {
             MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
@@ -96,26 +93,23 @@ namespace DashboardApi
                 {
                     Observations o = new Observations
                     {
-                        Id = mySQLReader.GetInt32(0),
-                        Afdeling = mySQLReader.GetString(1),
-                        PatientId = mySQLReader.GetInt32(2),
-                        Observationdate = mySQLReader.GetDateTime(3),
-                        Ewsprocedure = mySQLReader.GetString(4),
-                        Ews_total = mySQLReader.GetInt32(5),
-                        Sbp = mySQLReader.GetFloat(6),
-                        Sbp_score = mySQLReader.GetInt32(7),
-                        Loc = mySQLReader.GetString(8),
-                        Loc_score = mySQLReader.GetInt32(9),
-                        Spo2 = mySQLReader.GetFloat(10),
-                        Spo2_score = mySQLReader.GetInt32(11),
-                        Add_o2 = mySQLReader.GetString(12),
-                        Add_o2_score = mySQLReader.GetInt32(13),
-                        Hr = mySQLReader.GetInt32(14),
-                        Hr_score = mySQLReader.GetInt32(15),
-                        Rr = mySQLReader.GetInt32(16),
-                        Rr_score = mySQLReader.GetInt32(17),
-                        Temp = mySQLReader.GetFloat(18),
-                        Temp_score = mySQLReader.GetInt32(19),
+                        PatientId = mySQLReader.GetInt32(0),
+                        Observationdate = mySQLReader.GetDateTime(1),
+                        Ews_total = mySQLReader.GetInt32(2),
+                        Sbp = mySQLReader.GetFloat(3),
+                        Sbp_score = mySQLReader.GetInt32(4),
+                        Loc = mySQLReader.GetString(5),
+                        Loc_score = mySQLReader.GetInt32(6),
+                        Spo2 = mySQLReader.GetFloat(7),
+                        Spo2_score = mySQLReader.GetInt32(8),
+                        Add_o2 = mySQLReader.GetString(9),
+                        Add_o2_score = mySQLReader.GetInt32(10),
+                        Hr = mySQLReader.GetInt32(11),
+                        Hr_score = mySQLReader.GetInt32(12),
+                        Rr = mySQLReader.GetInt32(13),
+                        Rr_score = mySQLReader.GetInt32(14),
+                        Temp = mySQLReader.GetFloat(15),
+                        Temp_score = mySQLReader.GetInt32(16),
                     };
                     return o;
                 }
@@ -133,7 +127,7 @@ namespace DashboardApi
                 conn.Close();
             }
         }
-
+        */
         // Get A Specific Observation by PatientId
         public ArrayList GetObservationByPatientId(long patientId)
         {
@@ -163,26 +157,23 @@ namespace DashboardApi
                 {
                     Observations o = new Observations
                     {
-                        Id = mySQLReader.GetInt32(0),
-                        Afdeling = mySQLReader.GetString(1),
-                        PatientId = mySQLReader.GetInt32(2),
-                        Observationdate = mySQLReader.GetDateTime(3),
-                        Ewsprocedure = mySQLReader.GetString(4),
-                        Ews_total = mySQLReader.GetInt32(5),
-                        Sbp = mySQLReader.GetFloat(6),
-                        Sbp_score = mySQLReader.GetInt32(7),
-                        Loc = mySQLReader.GetString(8),
-                        Loc_score = mySQLReader.GetInt32(9),
-                        Spo2 = mySQLReader.GetFloat(10),
-                        Spo2_score = mySQLReader.GetInt32(11),
-                        Add_o2 = mySQLReader.GetString(12),
-                        Add_o2_score = mySQLReader.GetInt32(13),
-                        Hr = mySQLReader.GetInt32(14),
-                        Hr_score = mySQLReader.GetInt32(15),
-                        Rr = mySQLReader.GetInt32(16),
-                        Rr_score = mySQLReader.GetInt32(17),
-                        Temp = mySQLReader.GetFloat(18),
-                        Temp_score = mySQLReader.GetInt32(19),
+                        PatientId = mySQLReader.GetInt32(0),
+                        Observationdate = mySQLReader.GetDateTime(1),
+                        Ews_total = mySQLReader.GetInt32(2),
+                        Sbp = mySQLReader.GetFloat(3),
+                        Sbp_score = mySQLReader.GetInt32(4),
+                        Loc = mySQLReader.GetString(5),
+                        Loc_score = mySQLReader.GetInt32(6),
+                        Spo2 = mySQLReader.GetFloat(7),
+                        Spo2_score = mySQLReader.GetInt32(8),
+                        Add_o2 = mySQLReader.GetString(9),
+                        Add_o2_score = mySQLReader.GetInt32(10),
+                        Hr = mySQLReader.GetInt32(11),
+                        Hr_score = mySQLReader.GetInt32(12),
+                        Rr = mySQLReader.GetInt32(13),
+                        Rr_score = mySQLReader.GetInt32(14),
+                        Temp = mySQLReader.GetFloat(15),
+                        Temp_score = mySQLReader.GetInt32(16),
                     };
 
                     observationArray.Add(o);

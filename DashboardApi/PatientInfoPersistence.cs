@@ -49,8 +49,10 @@ namespace DashboardApi
                         City = mySQLReader.GetString(9),
                         EmergencyContact = mySQLReader.GetString(10),
                         EmergencyContactPhone = mySQLReader.GetString(11),
-                        Weight = mySQLReader.GetString(12),
-                        Height = mySQLReader.GetString(13),
+                        Sex = mySQLReader.GetString(12),
+                        Weight = mySQLReader.GetString(13),
+                        Height = mySQLReader.GetString(14),
+                        Afdeling = mySQLReader.GetString(15),
                     };
 
                     patientArray.Add(p);
@@ -105,6 +107,7 @@ namespace DashboardApi
                     p.Sex = mySQLReader.GetString(12);
                     p.Weight = mySQLReader.GetString(13);
                     p.Height = mySQLReader.GetString(14);
+                    p.Afdeling = mySQLReader.GetString(15);
 
                     return p;
                 }
@@ -210,6 +213,7 @@ namespace DashboardApi
                                 " sex='" + patientToSave.Sex + "'," +
                                 " weight='" + patientToSave.Weight + "'," +
                                 " height='" + patientToSave.Height + "'" +
+                                " afdeling='" + patientToSave.Afdeling + "'" +
                                 " WHERE patientid = " + id.ToString();
 
                     cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);

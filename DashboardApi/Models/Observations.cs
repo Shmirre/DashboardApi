@@ -9,11 +9,6 @@ namespace DashboardApi.Models
 {
     public class Observations
     {
-        [Key]
-        public long Id { get; set; }
-
-        public string Afdeling { get; set; }
-
         //[ForeignKey("PatientId")]
         public long PatientId { get; set; }
 

@@ -37,6 +37,7 @@ namespace DashboardApi.Models
         public string Weight { get; set; }
 
         public string Height { get; set; }
+        public string Afdeling { get; set; }
 
     }
 }
