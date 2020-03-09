@@ -20,21 +20,10 @@ namespace DashboardApi.Controllers
         }
 
         // GET: api/Observation/id
-        public HttpResponseMessage Get(long id)
+        public String Get(long id)
         {
             ObservationPersistence obp = new ObservationPersistence();
-            Observations observation = obp.GetObservation(id);
-
-            if (observation == null)
-            {
-                var message = string.Format("Observation with id = {0} not found", id);
-                HttpError err = new HttpError(message);
-                return Request.CreateResponse(HttpStatusCode.NotFound, err);
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, observation);
-            }
+            return "id";
         }
 
         // POST: api/Observation
