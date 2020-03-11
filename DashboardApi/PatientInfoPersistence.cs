@@ -52,7 +52,7 @@ namespace DashboardApi
                         Sex = mySQLReader.GetString(12),
                         Weight = mySQLReader.GetString(13),
                         Height = mySQLReader.GetString(14),
-                        Afdeling = mySQLReader.GetString(15),
+                        Department = mySQLReader.GetString(15),
                     };
 
                     patientArray.Add(p);
@@ -107,7 +107,63 @@ namespace DashboardApi
                     p.Sex = mySQLReader.GetString(12);
                     p.Weight = mySQLReader.GetString(13);
                     p.Height = mySQLReader.GetString(14);
-                    p.Afdeling = mySQLReader.GetString(15);
+                    p.Department = mySQLReader.GetString(15);
+
+                    return p;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        
+        // Get A Specific Patient by Department
+        public PatientInfo GetPatientByDepartment(string department)
+        {
+            MySql.Data.MySqlClient.MySqlConnection conn;
+            string myConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
+
+            conn = new MySql.Data.MySqlClient.MySqlConnection();
+            try
+            {
+                conn.ConnectionString = myConnectionString;
+                conn.Open();
+
+                PatientInfo p = new PatientInfo();
+                MySql.Data.MySqlClient.MySqlDataReader mySQLReader = null;
+
+                String sqlString = "SELECT * FROM patientinfo WHERE department = " + department.ToString();
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
+
+                mySQLReader = cmd.ExecuteReader();
+
+                if (mySQLReader.Read())
+                {
+                    p.PatientId = mySQLReader.GetInt32(0);
+                    p.Firstname = mySQLReader.GetString(1);
+                    p.Lastname = mySQLReader.GetString(2);
+                    p.PrimaryDoctor = mySQLReader.GetString(3);
+                    p.SecondaryDoctor = mySQLReader.GetString(4);
+                    p.PhoneNumber = mySQLReader.GetString(5);
+                    p.Street = mySQLReader.GetString(6);
+                    p.Number = mySQLReader.GetString(7);
+                    p.PostalCode = mySQLReader.GetString(8);
+                    p.City = mySQLReader.GetString(9);
+                    p.EmergencyContact = mySQLReader.GetString(10);
+                    p.EmergencyContactPhone = mySQLReader.GetString(11);
+                    p.Sex = mySQLReader.GetString(12);
+                    p.Weight = mySQLReader.GetString(13);
+                    p.Height = mySQLReader.GetString(14);
+                    p.Department = mySQLReader.GetString(15);
 
                     return p;
                 }
@@ -126,7 +182,7 @@ namespace DashboardApi
             }
         }
 
-        public bool deletePatient(long id)
+        public bool DeletePatient(long id)
         {
             MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
@@ -173,7 +229,7 @@ namespace DashboardApi
             }
         }
 
-        public bool updatePatient(long id, PatientInfo patientToSave)
+        public bool UpdatePatient(long id, PatientInfo patientToSave)
         {
             MySql.Data.MySqlClient.MySqlConnection conn;
             string myConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString; 
@@ -213,7 +269,7 @@ namespace DashboardApi
                                 " sex='" + patientToSave.Sex + "'," +
                                 " weight='" + patientToSave.Weight + "'," +
                                 " height='" + patientToSave.Height + "'," +
-                                " afdeling='" + patientToSave.Afdeling + "'" +
+                                " department='" + patientToSave.Department + "'" +
                                 " WHERE patientid = " + id.ToString();
 
                     cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
@@ -235,7 +291,7 @@ namespace DashboardApi
             }
         }
 
-        public long savePatientInfo(PatientInfo patientToSave)
+        public long SavePatientInfo(PatientInfo patientToSave)
         {
 
             MySql.Data.MySqlClient.MySqlConnection conn;
@@ -249,7 +305,7 @@ namespace DashboardApi
                 conn.Open();
 
                 String sqlString = "INSERT INTO patientinfo (firstname, lastname, primarydoctor, secondarydoctor, phonenumber," +
-                                   " street, number, postalcode, city, emergencycontact, emergencycontactphone, sex, weight, height, afdeling) VALUES " +
+                                   " street, number, postalcode, city, emergencycontact, emergencycontactphone, sex, weight, height, department) VALUES " +
                                    "('" + patientToSave.Firstname + "','"
                                    + patientToSave.Lastname + "','"
                                    + patientToSave.PrimaryDoctor + "','"
@@ -264,7 +320,7 @@ namespace DashboardApi
                                    + patientToSave.Sex + "','"
                                    + patientToSave.Weight + "','"
                                    + patientToSave.Height + "','"
-                                   + patientToSave.Afdeling + "')";
+                                   + patientToSave.Department + "')";
 
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
                 cmd.ExecuteNonQuery();

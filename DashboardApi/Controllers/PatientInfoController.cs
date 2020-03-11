@@ -22,6 +22,26 @@ namespace DashboardApi.Controllers
             return pip.GetPatients();
         }
 
+        // GET: api/patients/department/
+        [Route("department/{department}")]
+        [HttpGet]
+        public HttpResponseMessage Getpatientdepartment(string department)
+        {
+            PatientInfoPersistence pip = new PatientInfoPersistence();
+            PatientInfo patientinfo = pip.GetPatientByDepartment(department);
+
+            if (patientinfo == null)
+            {
+                var message = string.Format("Patient with department = {0} not found", department);
+                HttpError err = new HttpError(message);
+                return Request.CreateResponse(HttpStatusCode.NotFound, err);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, patientinfo);
+            }
+        }
+
         // GET: api/patients/31
         [Route("{id:long}")]
         [HttpGet]
@@ -51,7 +71,7 @@ namespace DashboardApi.Controllers
             long id;
 
             // Save the patient in the db
-            id = pip.savePatientInfo(value);
+            id = pip.SavePatientInfo(value);
 
             // Get the id of the created patient
             value.PatientId = id;
@@ -72,7 +92,7 @@ namespace DashboardApi.Controllers
             PatientInfoPersistence pip = new PatientInfoPersistence();
             bool recordExisted = false;
 
-            recordExisted = pip.updatePatient(id, value);
+            recordExisted = pip.UpdatePatient(id, value);
 
             HttpResponseMessage response;
 
@@ -98,7 +118,7 @@ namespace DashboardApi.Controllers
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
             bool recordExisted = false;
-            recordExisted = pip.deletePatient(id);
+            recordExisted = pip.DeletePatient(id);
 
             HttpResponseMessage response;
 
