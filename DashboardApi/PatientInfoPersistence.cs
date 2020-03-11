@@ -212,7 +212,7 @@ namespace DashboardApi
                                 " emergencycontactphone='" + patientToSave.EmergencyContactPhone + "'," +
                                 " sex='" + patientToSave.Sex + "'," +
                                 " weight='" + patientToSave.Weight + "'," +
-                                " height='" + patientToSave.Height + "'" +
+                                " height='" + patientToSave.Height + "'," +
                                 " afdeling='" + patientToSave.Afdeling + "'" +
                                 " WHERE patientid = " + id.ToString();
 
@@ -249,7 +249,7 @@ namespace DashboardApi
                 conn.Open();
 
                 String sqlString = "INSERT INTO patientinfo (firstname, lastname, primarydoctor, secondarydoctor, phonenumber," +
-                                   " street, number, postalcode, city, emergencycontact, emergencycontactphone, sex, weight, height) VALUES " +
+                                   " street, number, postalcode, city, emergencycontact, emergencycontactphone, sex, weight, height, afdeling) VALUES " +
                                    "('" + patientToSave.Firstname + "','"
                                    + patientToSave.Lastname + "','"
                                    + patientToSave.PrimaryDoctor + "','"
@@ -263,7 +263,8 @@ namespace DashboardApi
                                    + patientToSave.EmergencyContactPhone + "','"
                                    + patientToSave.Sex + "','"
                                    + patientToSave.Weight + "','"
-                                   + patientToSave.Height + "')";
+                                   + patientToSave.Height + "','"
+                                   + patientToSave.Afdeling + "')";
 
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
                 cmd.ExecuteNonQuery();

@@ -8,15 +8,13 @@ using System.Web.Http;
 using DashboardApi.Models;
 
 namespace DashboardApi.Controllers
-{
+{ 
+    [RoutePrefix("api/patients")]
     public class PatientInfoController : ApiController
     {
-        /// <summary>
-        /// Get all the Patients
-        /// </summary>
-        /// <returns></returns>
-        // GET: api/PatientInfo
-        // Return a list of all the patientInformation
+        // GET: api/patients
+        [Route("")]
+        [HttpGet]
         public ArrayList Get()
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
@@ -24,12 +22,9 @@ namespace DashboardApi.Controllers
             return pip.GetPatients();
         }
 
-        /// <summary>
-        /// Return specific patientinfo based on an ID
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: api/PatientInfo/id
+        // GET: api/patients/31
+        [Route("{id:long}")]
+        [HttpGet]
         public HttpResponseMessage Get(long id)
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
@@ -47,21 +42,32 @@ namespace DashboardApi.Controllers
             }
         }
 
-        // POST: api/PatientInfo
+        // POST: api/patients/createpatient
+        [Route("createpatient")]
+        [HttpPost]
         public HttpResponseMessage Post([FromBody]PatientInfo value)
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
             long id;
+
+            // Save the patient in the db
             id = pip.savePatientInfo(value);
+
+            // Get the id of the created patient
             value.PatientId = id;
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created);
-            response.Headers.Location = new Uri(Request.RequestUri, String.Format("patientinfo/{0}", id));
+
+            string msg = string.Format("Patient with id: {0} was created.", id);
+            response = Request.CreateResponse(HttpStatusCode.OK, msg);
+
             return response;
         }
 
         // PUT: api/PatientInfo/5
-        public HttpResponseMessage Put(long id, [FromBody]PatientInfo value)
+        [Route("updatepatient/{id}")]
+        [HttpPut]
+        public HttpResponseMessage Update(long id, [FromBody]PatientInfo value)
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
             bool recordExisted = false;
@@ -72,19 +78,22 @@ namespace DashboardApi.Controllers
 
             if (recordExisted)
             {
-                var message = string.Format("Patient with id = {0} not found", id);
-                HttpError err = new HttpError(message);
-                return Request.CreateResponse(HttpStatusCode.NoContent, err);
+                string msg = string.Format("Patient with id: {0} was found and updated.", id);
+                response = Request.CreateResponse(HttpStatusCode.OK, msg);
             }
             else
             {
-                response = Request.CreateResponse(HttpStatusCode.OK, pip);
+                var message = string.Format("Patient with id = {0} not found!", id);
+                HttpError err = new HttpError(message);
+                response = Request.CreateResponse(HttpStatusCode.NotFound, err);
             }
 
             return response;
         }
 
         // DELETE: api/PatientInfo/5
+        [Route("deletepatient/{id}")]
+        [HttpDelete]
         public HttpResponseMessage Delete(long id)
         {
             PatientInfoPersistence pip = new PatientInfoPersistence();
@@ -95,11 +104,14 @@ namespace DashboardApi.Controllers
 
             if (recordExisted)
             {
-                response = Request.CreateResponse(HttpStatusCode.NoContent);
+                string msg = string.Format("Patient with id: {0} was found and deleted.", id);
+                response = Request.CreateResponse(HttpStatusCode.OK, msg);
             }
             else
             {
-                response = Request.CreateResponse(HttpStatusCode.OK);
+                var message = string.Format("Patient with id = {0} was not found!", id);
+                HttpError err = new HttpError(message);
+                response = Request.CreateResponse(HttpStatusCode.NotFound, err);
             }
 
             return response;

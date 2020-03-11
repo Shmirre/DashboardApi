@@ -481,18 +481,5 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:DashboardApi.Controllers.PatientInfoController.Get">
-            <summary>
-            Get all the Patients
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:DashboardApi.Controllers.PatientInfoController.Get(System.Int64)">
-            <summary>
-            Return specific patientinfo based on an ID
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
     </members>
 </doc>
