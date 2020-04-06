@@ -1,0 +1,21 @@
+<h4>Afdelingnaam</h4>
+
+<mat-table [dataSource]="dataPatientInfo">
+    <ng-container  matColumnDef="Patient">
+        <mat-header-cell *matHeaderCellDef>Patiënt</mat-header-cell>
+        <mat-cell *matCellDef="let Patient"></mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="LaatsteMeting">
+        <mat-header-cell *matHeaderCellDef>Laatste Meting</mat-header-cell>
+        <mat-cell *matCellDef="let LaatsteMeting"></mat-cell>
+    </ng-container>
+    <ng-container  matColumnDef="Ews">
+        <mat-header-cell *matHeaderCellDef>EWS</mat-header-cell>
+        <mat-cell *matCellDef="let Ews"></mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="tableColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableColumns"></mat-row>
+</mat-table>
+<div *ngFor="let info of patientInfoes">
+    <p>Firstname : {{info.Firstname}} , Lastname : {{info.Lastname}}</p>
+</div>

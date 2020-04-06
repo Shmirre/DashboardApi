@@ -17,7 +17,8 @@ namespace DashboardApi.Areas.HelpPage
         private readonly SimpleTypeObjectGenerator SimpleObjectGenerator = new SimpleTypeObjectGenerator();
 
         /// <summary>
-        /// Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+        /// Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it sup
+        /// s the following types:
         /// Simple types: <see cref="int"/>, <see cref="string"/>, <see cref="Enum"/>, <see cref="DateTime"/>, <see cref="Uri"/>, etc.
         /// Complex types: POCO types.
         /// Nullables: <see cref="Nullable{T}"/>.
