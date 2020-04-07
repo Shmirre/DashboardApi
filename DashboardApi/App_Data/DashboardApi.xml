@@ -446,7 +446,8 @@
         </member>
         <member name="M:DashboardApi.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
             <summary>
-            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it sup
+            s the following types:
             Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
             Complex types: POCO types.
             Nullables: <see cref="T:System.Nullable`1"/>.
