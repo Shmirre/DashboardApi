@@ -11,8 +11,8 @@ namespace DashboardApi
         public ArrayList GetPatients()
         {
             MySql.Data.MySqlClient.MySqlConnection conn;
-            string myConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
-
+            //string myConnectionString = ConfigurationManager.ConnectionStrings["AzureDB"].ConnectionString;
+            string myConnectionString = "Server=localhost;uid=root;database=dashboard";
             conn = new MySql.Data.MySqlClient.MySqlConnection();
 
             try

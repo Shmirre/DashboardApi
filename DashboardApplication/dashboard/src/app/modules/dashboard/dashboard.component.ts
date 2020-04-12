@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ObservationAPIService } from 'src/app/observation-api.service';
 import { Observable } from 'rxjs';
+import { ObservationAPIService } from 'src/app/services/observation-api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,27 +8,27 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  
   tableColumns  :  string[] = ['Patient', 'LaatsteMeting', 'Ews'];
   
   //Dynamisch inladen
-  dataPatientInfo  = [];
-  patientInfoes;
+  patientInfoes: any[] = [];
 
   constructor(private _observationAPIService: ObservationAPIService) {}
 
-    ngOnInit(): void {
-      this.getPatientInfo()
-    }
+  ngOnInit(): void {
+    this.getPatientInfo()
+  }
 
-    public getPatientInfo() {
+  public getPatientInfo() {
          this._observationAPIService.getPatientInfo().subscribe(
-            data => { this.patientInfoes = data},
+            data => { 
+              this.patientInfoes = data;
+              console.log(this.patientInfoes);
+            },
             err => console.error(err),
             () => console.log('done loading PatientInfo')
           );
-          console.log(this.patientInfoes)
+       
       }
     
 }
